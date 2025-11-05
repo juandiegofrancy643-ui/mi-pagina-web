@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balconcito del Valle - Gastro Bar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ========================================
+           CONFIGURACIÓN DEL LOGO
+           ======================================== */
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            color: #d4d4d4;
+            background-color: #0a0a0a;
+        }
+
+        /* Para cambiar el logo: 
+           1. Sube tu archivo "Balconcito.jpeg" al mismo servidor/carpeta que esta página HTML
+           2. O usa el input de subida de archivos debajo del logo
+        */
+
+        header {
+            background: #1a1a1a;
+            color: #d4af37;
+            padding: 3rem 0;
+            text-align: center;
+            border-bottom: 1px solid #d4af37;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            border: 2px solid #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a0a0a;
+            overflow: hidden;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .header-text h1 {
+            font-size: 3rem;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: #d4af37;
+        }
+
+        .header-text p {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #a89968;
+            font-weight: 300;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #a89968;
+            font-weight: 300;
+        }
+
+        nav {
+            background-color: #000;
+            padding: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #333;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #a89968;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200');
+            background-size: cover;
+            background-position: center;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d4af37;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            animation: changeBackground 20s infinite;
+            transition: background-image 1.5s ease-in-out;
+        }
+
+        @keyframes changeBackground {
+            0% {
+                background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                                  url('patio.jpeg');
+            }
+            25% {
+                background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                                  url('restaurante.jpeg');
+            }
+            50% {
+                background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                                  url('comida.jpeg');
+            }
+            75% {
+                background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                                  url('comida1.jpg');
+            }
+            100% {
+                background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                                  url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200');
+            }
+        }
+
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #d4af37;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #a89968;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 5rem;
+        }
+
+        h2 {
+            color: #d4af37;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 2px;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #333;
+        }
+
+        h3 {
+            color: #d4af37;
+            font-size: 1.5rem;
+            margin: 2.5rem 0 1.5rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: #1a1a1a;
+            padding: 2.5rem;
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .feature-card h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #a89968;
+            line-height: 1.7;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .menu-item {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-left: 2px solid #d4af37;
+        }
+
+        .menu-item h4 {
+            color: #d4af37;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+            font-size: 1.1rem;
+        }
+
+        .menu-item p {
+            color: #a89968;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .activities {
+            background: #1a1a1a;
+            padding: 3rem;
+            margin-top: 3rem;
+            border: 1px solid #333;
+        }
+
+        .activity-item {
+            background: #0a0a0a;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border-left: 2px solid #d4af37;
+        }
+
+        .activity-item h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        .activity-item p {
+            color: #a89968;
+            margin: 1rem 0;
+            line-height: 1.8;
+        }
+
+        .activity-item strong {
+            color: #d4af37;
+            font-weight: 400;
+        }
+
+        .activity-item em {
+            color: #808080;
+            font-size: 0.9rem;
+        }
+
+        .location-box {
+            background: #1a1a1a;
+            color: #d4af37;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 3rem;
+            border: 1px solid #333;
+        }
+
+        .location-box h3 {
+            color: #d4af37;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .address {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin: 1.5rem 0;
+            color: #d4af37;
+            letter-spacing: 1px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .social-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            background: #d4af37;
+            color: #000;
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+        }
+
+        .reviews {
+            background: #1a1a1a;
+            padding: 3rem;
+            margin-top: 3rem;
+            border: 1px solid #333;
+        }
+
+        .review-card {
+            background: #0a0a0a;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 2px solid #d4af37;
+        }
+
+        .stars {
+            color: #d4af37;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+        }
+
+        .review-card p {
+            color: #a89968;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer {
+            font-weight: 300;
+            color: #d4af37;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        footer {
+            background: #000;
+            color: #a89968;
+            text-align: center;
+            padding: 3rem;
+            margin-top: 5rem;
+            border-top: 1px solid #333;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-weight: 300;
+            font-size: 0.95rem;
+        }
+
+        .intro-text {
+            font-size: 1.15rem;
+            text-align: center;
+            margin: 3rem auto;
+            color: #a89968;
+            line-height: 2;
+            max-width: 800px;
+            font-weight: 300;
+        }
+
+        .review-intro {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2.5rem;
+            background: #0a0a0a;
+            border-left: 2px solid #d4af37;
+        }
+
+        .review-intro h3 {
+            color: #d4af37;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .review-intro p {
+            color: #a89968;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .review-form {
+            background: #1a1a1a;
+            padding: 3rem;
+            margin-top: 3rem;
+            border: 1px solid #333;
+        }
+
+        .review-form h3 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: #d4d4d4;
+            font-family: 'Georgia', serif;
+            font-size: 0.95rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .rating-stars span:hover,
+        .rating-stars span.active {
+            color: #d4af37;
+        }
+
+        .submit-button {
+            background: #d4af37;
+            color: #000;
+            padding: 1rem 3rem;
+            border: none;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: block;
+            margin: 2rem auto 0;
+        }
+
+        .submit-button:hover {
+            background: #a89968;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .logo-container {
+                width: 80px;
+                height: 80px;
+            }
+
+            .header-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .container {
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="Balconcito.jpeg" alt="Logo Balconcito del Valle">
+            </div>
+            <div class="header-text">
+                <h1>BALCONCITO DEL VALLE</h1>
+                <p>Gastronomía auténtica con vistas excepcionales</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#inicio">INICIO</a></li>
+            <li><a href="#nosotros">NOSOTROS</a></li>
+            <li><a href="#menu">MENÚ</a></li>
+            <li><a href="#actividades">ACTIVIDADES</a></li>
+            <li><a href="#ubicacion">UBICACIÓN</a></li>
+            <li><a href="#resenas">RESEÑAS</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero" id="inicio">
+        <div class="hero-content">
+            <h2>Una experiencia gastronómica única</h2>
+            <p>Tradición vallecaucana y cocina internacional</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section id="nosotros">
+            <h2>NUESTRO CONCEPTO</h2>
+            <p class="intro-text">
+                Balconcito del Valle es un espacio gastronómico dedicado a celebrar la riqueza culinaria del Valle del Cauca, complementado con una cuidada selección de platos internacionales. Nuestro mirador ofrece vistas panorámicas que acompañan cada experiencia, mientras que nuestra zona infantil garantiza momentos memorables para toda la familia.
+            </p>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🍽</div>
+                    <h3>GASTRONOMÍA SELECTA</h3>
+                    <p>Recetas tradicionales del Valle del Cauca elaboradas con ingredientes de primera calidad, junto a platos internacionales cuidadosamente seleccionados.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">◇</div>
+                    <h3>MIRADOR EXCLUSIVO</h3>
+                    <p>Vistas panorámicas que complementan cada momento gastronómico en un ambiente sofisticado y acogedor.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">◆</div>
+                    <h3>ESPACIO FAMILIAR</h3>
+                    <p>Zona de recreación infantil diseñada para que las familias disfruten de una experiencia completa y relajada.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu">
+            <h2>NUESTRA CARTA</h2>
+            
+            <h3>Entradas</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h4>Bocaditos del Valle</h4>
+                    <p>Mini empanadas vallunas con ají de maní artesanal</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Bocado Campesino</h4>
+                    <p>Aborrajados de plátano maduro rellenos de queso y croquetas de yuca con suero costeño</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Fusión Tropical</h4>
+                    <p>Ensalada de mango biche con aguacate, tajín y camarones en reducción de maracuyá</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Sabor del Trapiche</h4>
+                    <p>Arepitas de maíz pelado con suero criollo y chicharrón crujiente</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Cali Criollo</h4>
+                    <p>Papa criolla salteada con cebolla, tomate y trozos de longaniza del Cerrito</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Tierra y Río</h4>
+                    <p>Patacones con hogao y encurtido de bagre ahumado, típico de las zonas ribereñas del Cauca</p>
+                </div>
+            </div>
+
+            <h3>Platos Fuertes</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h4>Sazón Bugueño</h4>
+                    <p>Arroz atollado con costilla ahumada, longaniza y papa criolla</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Tradición Valluna</h4>
+                    <p>Chuleta de cerdo apanada con arroz blanco, tajadas de plátano y ensalada rallada</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Río y Mar Internacional</h4>
+                    <p>Filete de salmón con salsa de lulo, puré de yuca y vegetales salteados</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Sabores del Mundo - Pasta de los Andes</h4>
+                    <p>Pasta artesanal con salsa cremosa de champiñones, espinaca y queso paipa</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Tierra y Brasa "Cali Style"</h4>
+                    <p>Corte de res al grill con chimichurri de hierbas del Valle y papas criollas doradas</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Encanto del Guabal</h4>
+                    <p>Sancocho de gallina criolla servido con arroz, aguacate y ají casero</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Montaña y Río</h4>
+                    <p>Trucha a la parrilla con papas saladas, hogao y ensalada de repollo</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Cocina del Mundo - Pollo Tropical</h4>
+                    <p>Pechuga a la plancha con salsa de piña y coco, acompañada de arroz con coco y ensalada de mango</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Recuerdo de Feria</h4>
+                    <p>Tamal valluno envuelto en hoja de plátano, relleno de cerdo, pollo, papa y huevo</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Sabores del Llano</h4>
+                    <p>Lomo en salsa criolla con puré de papa y ensalada fresca</p>
+                </div>
+            </div>
+
+            <h3>Postres</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h4>Tentación de Guayaba</h4>
+                    <p>Cheesecake de guayaba con base de galleta de coco</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Dulce Encantado del Cauca</h4>
+                    <p>Manjar blanco casero con brevas en almíbar</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Pasión Internacional</h4>
+                    <p>Mousse de maracuyá con crocante de almendra</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Besitos del Valle</h4>
+                    <p>Obleas con arequipe y queso rallado, decoradas con trozos de coco</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Delicia de Chontaduro</h4>
+                    <p>Postre frío de chontaduro con crema de leche y miel de panela</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Suspiro Caleño</h4>
+                    <p>Helado artesanal de coco con salsa de guanábana y hojuelas de caña</p>
+                </div>
+            </div>
+
+            <h3>Bebidas y Cócteles</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h4>Champus de Oro</h4>
+                    <p>Champús tradicional con piña y maíz</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Jugo del Paraíso</h4>
+                    <p>Lulo, piña y hierbabuena</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Caña Sunset</h4>
+                    <p>Aguardiente, maracuyá y limón</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Café del Trapiche</h4>
+                    <p>Café con panela y vainilla</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Guarapo Fresco</h4>
+                    <p>Jugo de caña recién extraído con hielo</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Refajo del Valle</h4>
+                    <p>Mezcla de cerveza artesanal con gaseosa y toque de limón</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Canelazo Bugueño</h4>
+                    <p>Bebida caliente con aguardiente, canela y panela</p>
+                </div>
+                <div class="menu-item">
+                    <h4>Limonada del Pacífico</h4>
+                    <p>Limonada con coco y menta</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="actividades">
+            <h2>EXPERIENCIAS</h2>
+            
+            <div class="activities">
+                <div class="activity-item">
+                    <h3>Tour Gastronómico</h3>
+                    <p><strong>Recorrido cultural y culinario</strong></p>
+                    <p>Un recorrido guiado por los lugares más representativos de la ciudad, explorando su historia y cultura. La experiencia culmina en Balconcito del Valle con una degustación de nuestros platos emblemáticos desde el mirador.</p>
+                    <p><em>Duración: 3 horas | Incluye degustación completa</em></p>
+                </div>
+
+                <div class="activity-item">
+                    <h3>Clases de Cocina Tradicional</h3>
+                    <p><strong>Aprenda las técnicas de la cocina vallecaucana</strong></p>
+                    <p>Nuestros chefs especializados comparten los secretos de la gastronomía regional. Sesiones prácticas donde conocerá ingredientes autóctonos, técnicas tradicionales y secretos familiares de cada preparación.</p>
+                    <p><em>Sesiones personalizadas | Incluye ingredientes y recetario</em></p>
+                </div>
+
+                <div class="activity-item">
+                    <h3>Eventos Privados</h3>
+                    <p>Espacios diseñados para celebraciones familiares, eventos corporativos y ocasiones especiales. Instalaciones completas con mirador, salones privados y zona recreativa.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ubicacion">
+            <h2>UBICACIÓN</h2>
+            
+            <div class="location-box">
+                <h3>Visítenos</h3>
+                <div class="address">
+                    Alto Bonito<br>
+                    Guadalajara de Buga, Valle del Cauca
+                </div>
+                <p style="margin-top: 2rem; font-size: 1rem; color: #a89968;">
+                    En el corazón del Valle del Cauca, con amplias instalaciones y acceso conveniente.
+                </p>
+            </div>
+
+            <h3 style="margin-top: 4rem; text-align: center;">Redes Sociales</h3>
+            <div class="social-links">
+                <a href="#" class="social-button">
+                    <span style="font-weight: 600;">f</span> Facebook
+                </a>
+                <a href="#" class="social-button">
+                    <span style="font-weight: 600;">IG</span> Instagram
+                </a>
+                <a href="#" class="social-button">
+                    <span style="font-weight: 600;">X</span> Twitter
+                </a>
+                <a href="#" class="social-button">
+                    <span style="font-weight: 600;">TT</span> TikTok
+                </a>
+            </div>
+        </section>
+
+        <section id="resenas">
+            <h2>TESTIMONIOS</h2>
+            
+            <div class="reviews">
+                <div class="review-card">
+                    <div class="stars">★ ★ ★ ★ ★</div>
+                    <p>Una experiencia gastronómica excepcional. La calidad de los platos tradicionales es notable y las vistas desde el mirador complementan perfectamente la velada. La zona infantil permitió que nuestros hijos disfrutaran mientras nosotros nos relajábamos.</p>
+                    <p class="reviewer">María Fernanda G.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">★ ★ ★ ★ ★</div>
+                    <p>El tour gastronómico fue revelador, conocimos aspectos fascinantes de la ciudad y la región. Finalizar en Balconcito del Valle fue el cierre perfecto. El sancocho valluno es verdaderamente auténtico.</p>
+                    <p class="reviewer">Carlos Alberto M.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">★ ★ ★ ★ ★</div>
+                    <p>Las clases de cocina superaron mis expectativas. Los chefs comparten conocimientos profundos sobre la gastronomía regional con gran profesionalismo. Una experiencia educativa y deliciosa.</p>
+                    <p class="reviewer">Andrea P.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">★ ★ ★ ★ ★</div>
+                    <p>Organizamos el cumpleaños de nuestro hijo aquí y la atención fue impecable. Las instalaciones son de primera, la comida excelente y el servicio ejemplar. Altamente recomendado para eventos familiares.</p>
+                    <p class="reviewer">Roberto y Claudia S.</p>
+                </div>
+            </div>
+
+            <div class="review-intro">
+                <h3>Comparta su experiencia</h3>
+                <p>Su opinión es importante para nosotros. Comparta su experiencia en nuestras plataformas digitales.</p>
+            </div>
+
+            <div class="review-form">
+                <h3>Deje su Reseña</h3>
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Calificación</label>
+                        <div class="rating-stars" id="ratingStars">
+                            <span data-rating="1">★</span>
+                            <span data-rating="2">★</span>
+                            <span data-rating="3">★</span>
+                            <span data-rating="4">★</span>
+                            <span data-rating="5">★</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="comentario">Comentario</label>
+                        <textarea id="comentario" name="comentario" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">ENVIAR RESEÑA</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>BALCONCITO DEL VALLE</p>
+        <p>Alto Bonito, Guadalajara de Buga, Valle del Cauca</p>
+        <p style="margin-top: 1.5rem;">Gastro Bar © 2025</p>
+    </footer>
+
+    <script>
+        // Sistema de calificación con estrellas
+        const stars = document.querySelectorAll('.rating-stars span');
+        let selectedRating = 0;
+
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                selectedRating = this.getAttribute('data-rating');
+                stars.forEach(s => s.classList.remove('active'));
+                for(let i = 0; i < selectedRating; i++) {
+                    stars[i].classList.add('active');
+                }
+            });
+
+            star.addEventListener('mouseenter', function() {
+                const rating = this.getAttribute('data-rating');
+                stars.forEach(s => s.classList.remove('active'));
+                for(let i = 0; i < rating; i++) {
+                    stars[i].classList.add('active');
+                }
+            });
+        });
+
+        document.querySelector('.rating-stars').addEventListener('mouseleave', function() {
+            stars.forEach(s => s.classList.remove('active'));
+            for(let i = 0; i < selectedRating; i++) {
+                stars[i].classList.add('active');
+            }
+        });
+
+        // Manejo del envío del formulario
+        document.getElementById('reviewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value;
+            const comentario = document.getElementById('comentario').value;
+            
+            if(selectedRating === 0) {
+                alert('Por favor seleccione una calificación');
+                return;
+            }
+
+            alert('¡Gracias por su reseña! Su opinión ha sido recibida.');
+            
+            // Limpiar formulario
+            this.reset();
+            selectedRating = 0;
+            stars.forEach(s => s.classList.remove('active'));
+        });
+    </script>
+</body>
+</html>
